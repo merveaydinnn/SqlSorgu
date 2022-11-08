@@ -6,12 +6,12 @@ SELECT OrderDate,ShipCountry FROM Orders WHERE OrderDate BETWEEN '1997/05/01' AN
 SELECT COUNT(CustomerID), Country FROM Customers
 GROUP BY Country HAVING COUNT(CustomerID) > 5;
 select ShipCountry FROM Orders GROUP BY ShipCountry
-SELECT Count(OrderID) AS SiparişAdedi, ShipCountry, OrderDate FROM Orders   WHERE OrderDate BETWEEN '1997/05/01' AND '1997/05/31'   GROUP BY ShipCountry
+SELECT Count(OrderID) AS SipariÃ¾Adedi, ShipCountry, OrderDate FROM Orders   WHERE OrderDate BETWEEN '1997/05/01' AND '1997/05/31'   GROUP BY ShipCountry
 
 --birinci sorgu
- select Count(OrderID) AS SiparişAdedi ,ShipCountry FROM  Orders  
+ select Count(OrderID) AS SipariÃ¾Adedi ,ShipCountry FROM  Orders  
  WHERE OrderDate BETWEEN '1997/05/01' AND '1997/05/31'  
- GROUP BY  ShipCountry  order by SiparişAdedi desc 
+ GROUP BY  ShipCountry  order by SipariÃ¾Adedi desc 
 
 
 Select * from Employees where (Select Year(GETDATE( ) ) -Year( BirthDate ) as Yas from Employees ) <60
@@ -27,8 +27,8 @@ where Year(GETDATE( ) ) -Year( BirthDate )  <60
 
 
 
---Year(GETDATE)( ) : Bugünün tarihini alır. 
---Year(DogumTarihi) : Tabloda olusturduğumuz Doğum Tarihi alır. 
+--Year(GETDATE)( ) : BugÃ¼nÃ¼n tarihini alÃ½r. 
+--Year(DogumTarihi) : Tabloda olusturduÃ°umuz DoÃ°um Tarihi alÃ½r. 
 
 -- sorgu 3
 
@@ -74,7 +74,7 @@ inner join  Orders as o  on  od.OrderID=o.OrderID
 inner join Employees as e on o.EmployeeID=e.EmployeeID where e.FirstName like 'Nancy' 
 
 -- sorgu5
-Select (e.FirstName +e.LastName)as Çalişan , p.ProductName , SUM(od.Quantity) as Adet  , SUM(od.Quantity*od.UnitPrice) as ToplamTutar from Products   as p 
+Select (e.FirstName +e.LastName)as Ã‡aliÃ¾an , p.ProductName , SUM(od.Quantity) as Adet  , SUM(od.Quantity*od.UnitPrice) as ToplamTutar from Products   as p 
 inner join  [Order Details] as od on p.ProductID =od.ProductID
 inner join  Orders as o  on  od.OrderID=o.OrderID
 inner join Employees as e on o.EmployeeID=e.EmployeeID where e.FirstName like 'Nancy' 
@@ -88,11 +88,11 @@ select ShippedDate,RequiredDate, datediff(DAY,ShippedDate,RequiredDate) as dt  f
 select CustomerID,ShipName,ShipAddress,ShipCity,datediff(DAY,ShippedDate,RequiredDate) as dt
 from Orders where datediff(DAY,ShippedDate,RequiredDate) > 0
 
---DATEFİFF VERİLEN İKİ TARİH ARASINDAKİ FARKI ALIR
+--DATEFÃFF VERÃLEN ÃKÃ TARÃH ARASINDAKÃ FARKI ALIR
 
 ---sorgu 7
-select count(OrderId) as SiparişAdeti from Orders 
-select count(OrderId) as SiparişAdeti, ShipCity from Orders group by ShipCity order by COUNT(OrderID) desc
+select count(OrderId) as SipariÃ¾Adeti from Orders 
+select count(OrderId) as SipariÃ¾Adeti, ShipCity from Orders group by ShipCity order by COUNT(OrderID) desc
 
 
 ---sorgu 8
@@ -108,28 +108,28 @@ select count(OrderId) as SiparişAdeti, ShipCity from Orders group by ShipCity or
 select * from Customers
  select * from Orders
 
-  -- müşteri tablosuna veri ekliyorum
+  -- mÃ¼Ã¾teri tablosuna veri ekliyorum
  insert into Customers (CustomerID,CompanyName)
- Values  ('MrvA','Aydın Fac')
+ Values  ('MrvA','AydÃ½n Fac')
 
-  -- eklediğim veriyle sipariş vermiyorum
+  -- eklediÃ°im veriyle sipariÃ¾ vermiyorum
 select  o.OrderID,c.CustomerID , c.CustomerID  ,c.CompanyName from Customers as c
 left join Orders as o on c.CustomerID=o.CustomerID
 
- --  left join de customer ekli olmasına rağmen bu müşteri hiç sipariş vermemişse karşısına null yazıyor. müşteri var ama sipariş yok
+ --  left join de customer ekli olmasÃ½na raÃ°men bu mÃ¼Ã¾teri hiÃ§ sipariÃ¾ vermemiÃ¾se karÃ¾Ã½sÃ½na null yazÃ½yor. mÃ¼Ã¾teri var ama sipariÃ¾ yok
 
 
 
--- sipariş tablosuna müşterinin bilgileri olmadan ekleme yapıyorum 
+-- sipariÃ¾ tablosuna mÃ¼Ã¾terinin bilgileri olmadan ekleme yapÃ½yorum 
 
  insert into Orders(ShipName,ShipAddress)
-  Values ('Merve aydın','Kayseri')
+  Values ('Merve aydÃ½n','Kayseri')
 
 --rigth join 
 select  o.OrderID,o.CustomerID, c.CustomerID ,c.CompanyName from Customers as c
 right join Orders as o on c.CustomerID=o.CustomerID
 
- --  right join de sipariş verilmiş ama müşterinin bilgileri yok karşısına null getiriyor 
+ --  right join de sipariÃ¾ verilmiÃ¾ ama mÃ¼Ã¾terinin bilgileri yok karÃ¾Ã½sÃ½na null getiriyor 
 
 
  --inner join 
@@ -140,15 +140,15 @@ order BY o.OrderID;
 
 
 
--- inner joinde ise her ikisinde olan veriyi getiriyor null değişkenleri göstermiyor örn hiç sipariş vermemiş müşteri gözükmüyor , 
---yada sipariş veren müşterinn adı soy adı yoksa custemer tablosuna eklemmemişse göstermiyor.
+-- inner joinde ise her ikisinde olan veriyi getiriyor null deÃ°iÃ¾kenleri gÃ¶stermiyor Ã¶rn hiÃ§ sipariÃ¾ vermemiÃ¾ mÃ¼steri gÃ¶zÃ¼kmÃ¼yor 
+--yada sipariÃ¾ veren mÃ¼Ã¾terinn adÃ½ soy adÃ½ yoksa custemer tablosuna eklemmemiÃ¾se gÃ¶stermiyor.
 
 select * from Orders
 select * from Customers
 
--- order tablosunda 831 satır var
--- custemer tablosunda ise 92 satır var 
---cross join ile 831*92 =76452 satır getiriyor 
--- order tablosundaki tüm satırları customer tablosunda ki her satırla ilişkilendirdi. Kartezyenini aldı
+-- order tablosunda 831 satÃ½r var
+-- custemer tablosunda ise 92 satÃ½r var 
+--cross join ile 831*92 =76452 satÃ½r getiriyor 
+-- order tablosundaki tÃ¼m satÃ½rlarÃ½ customer tablosunda ki her satÃ½rla iliÃ¾kilendirdi. Kartezyenini aldÃ½
 SELECT  o.OrderID, o.CustomerID , c.CustomerID ,c.CompanyName ,o.ShipAddress
 FROM Orders as o, Customers as c
